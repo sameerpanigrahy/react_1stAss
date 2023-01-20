@@ -6,15 +6,20 @@ import './style.css'
 export default function App() {
   
   let [text,setText]=useState('')
-  let [out,setOut]=useState(false)
-  console.log(text)
+  let [out,setOut]=useState(null)
+  let HandleChange1=(text)=>setText(text.target.value) 
+  
+  
   return (
     <div >
-      <textarea value={text} onChange={(text)=>setText(text.target.value)}></textarea>
+      <textarea value={text} onChange={HandleChange1} ></textarea>
       <br/>
-      <button onClick={()=>setOut(true)}>Click Me</button>
+      <button onClick={()=>setOut(true)} >Upper case</button>
+      <button onClick={()=>setOut(false)} >Lower case</button>
       <br/>
-      {out?<p>{text.toUpperCase()}</p>:null}
+      {out==null?<p >{text}</p>:out?<p >{text.toUpperCase()}</p>:<p >{text.toLowerCase()}</p>}
+      
+      <hr/>
     </div>
   );
 }
